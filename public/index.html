@@ -11,10 +11,25 @@
         <h1>StockAlert</h1>
         <p>Personal stock price monitoring system</p>
 
-        <div class="status">
-            <h2>System Status</h2>
-            <p>Server is running...</p>
+        <div class="add-stock">
+            <h2>Add Stock to Monitor</h2>
+            <form id="stockForm">
+                <input type="text" id="symbol" placeholder="Stock Symbol (e.g. AAPL)" required>
+                <input type="text" id="name" placeholder="Company Name (optional)">
+                <input type="number" id="highTarget" placeholder="Price Alert High" step="0.01">
+                <input type="number" id="lowTarget" placeholder="Price Alert Low" step="0.01">
+                <button type="submit">Add Stock</button>
+            </form>
+        </div>
+
+        <div class="stocks-list">
+            <h2>Monitored Stocks</h2>
+            <div id="stocksList">
+                Loading stocks...
+            </div>
         </div>
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
