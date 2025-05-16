@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { db } = require('../database');
+const { sendPriceAlert } = require('./notifier');
 
 const API_KEY = process.env.ALPHA_VANTAGE_API_KEY || 'demo';
 
@@ -64,12 +65,12 @@ async function updateStockPrices() {
 function checkPriceAlerts(stock, currentPrice) {
     if (stock.price_target_high && currentPrice >= stock.price_target_high) {
         console.log(`🚨 ALERT: ${stock.symbol} hit high target! Current: $${currentPrice}, Target: $${stock.price_target_high}`);
-
+        sendPriceAlert(stock, currentPrice, 'high');
     }
 
     if (stock.price_target_low && currentPrice <= stock.price_target_low) {
         console.log(`🚨 ALERT: ${stock.symbol} hit low target! Current: $${currentPrice}, Target: $${stock.price_target_low}`);
-
+        sendPriceAlert(stock, currentPrice, 'low');
     }
 }
 
